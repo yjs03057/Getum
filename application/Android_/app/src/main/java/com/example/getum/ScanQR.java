@@ -4,17 +4,23 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ScanQR extends AppCompatActivity {
     private IntentIntegrator qrScan;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qr);
+        textView = (TextView) findViewById(R.id.textViewId);
 
         qrScan = new IntentIntegrator(this);
         qrScan.setOrientationLocked(false);
@@ -29,8 +35,8 @@ public class ScanQR extends AppCompatActivity {
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                //qrcode 인식 되었을 때 Action
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "스캔 완료!", Toast.LENGTH_LONG).show();
+                textView.setText(result.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
