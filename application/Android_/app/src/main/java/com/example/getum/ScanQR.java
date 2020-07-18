@@ -41,7 +41,7 @@ public class ScanQR extends AppCompatActivity {
         qrImage = (ImageView) findViewById(R.id.qr_image);
         payInfo = (TextView) findViewById(R.id.pay_info);
         locationText = (TextView) findViewById(R.id.location);
-        qrBack = (Button) findViewById(R.id.qr_backbutton)
+        qrBack = (Button) findViewById(R.id.qr_backbutton);
         dbHelper = new SQLiteDBHelper(this);
 
         backButton.setOnClickListener(new View.OnClickListener() {
