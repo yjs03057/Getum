@@ -15,17 +15,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ScanQR"></activity>
+        <activity android:name=".CardregisterActivity"></activity>
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".CustomcenterActivity" />
+        <activity android:name=".ScanQR" />
         <activity android:name=".CreateQR" />
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".InfoActivity" />
         <activity android:name=".LoginActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB_y3aUB-1fz-RToknUEdik23Q1jyddT-w" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,9 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"/>
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>
