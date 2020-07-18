@@ -10,9 +10,6 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class ScanQR extends AppCompatActivity {
     private IntentIntegrator qrScan;
     private TextView textView;
