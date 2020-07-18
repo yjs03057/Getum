@@ -104,6 +104,14 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor findStorageById(Integer id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + StorageContract.Storage.TABLE_NAME + " WHERE id=" + id;
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
     public Cursor readUmbrellaRecord() {
         SQLiteDatabase db = getReadableDatabase();
 
