@@ -129,8 +129,8 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
                 String title = menuItem.getTitle().toString();
 
                 if(id == R.id.account){
-
-                    Toast.makeText(context, title + ": 계정 정보를 확인합니다.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
                 }
                 else if(id == R.id.setting){
                     Toast.makeText(context, title + ": 설정 정보를 확인합니다.", Toast.LENGTH_SHORT).show();
