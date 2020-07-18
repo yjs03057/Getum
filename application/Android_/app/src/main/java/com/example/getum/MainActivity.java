@@ -1,5 +1,10 @@
 package com.example.getum;
 
+import android.content.Context;
+import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -14,7 +19,21 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import android.content.res.AssetManager;
+import com.example.getum.SQLite.SQLiteDBHelper;
+import com.example.getum.SQLite.StorageContract;
+import com.example.getum.SQLite.UmbrellaContract;
+import com.example.getum.SQLite.UserContract;
+import com.google.zxing.integration.android.IntentIntegrator;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -84,12 +103,31 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
     private Location location;
-
+    private Button scanQRBtn;
+    private SQLiteDBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+ 
+        scanQRBtn = (Button) findViewById(R.id.QRcode);
+        dbHelper = new SQLiteDBHelper(this);
+        try {
+            dbHelper.createDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTimeStamp = dateFormat.format(new Date());
+        dbHelper.insertRentalLogRecord("rental", 1, "00001", 1, currentTimeStamp);
+        printTable();
+
+        scanQRBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ScanQR.class);
+                startActivity(intent);
+                
         locationRequest = new LocationRequest()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(UPDATE_INTERVAL_MS)
@@ -209,7 +247,6 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-
             }
         });
     }
@@ -442,8 +479,6 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
             }
 
         }
-
-    }
 
     //GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting(){
