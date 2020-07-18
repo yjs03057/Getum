@@ -104,6 +104,14 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor findStorageById(Integer id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + StorageContract.Storage.TABLE_NAME + " WHERE id=" + id;
+        Cursor cursor = db.rawQuery(query, null);
+        return cursor;
+    }
+
     public Cursor readUmbrellaRecord() {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -151,4 +159,14 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(RentalLogContract.RentalLog.SQL_READ_TABLE, null);
         return cursor;
     }
+
+    public int UmbrellaInStorage(String storage_id) { //현재 Storage에 있는 Umbrella 개수
+        SQLiteDatabase db = getReadableDatabase();
+        String query1 = "SELECT * FROM umbrella WHERE storage_id =" + storage_id;
+
+        Cursor cursor = db.rawQuery(query1, null);
+
+        return cursor.getCount();
+    }
+
 }
