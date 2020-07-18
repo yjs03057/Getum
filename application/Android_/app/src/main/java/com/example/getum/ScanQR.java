@@ -3,10 +3,15 @@ package com.example.getum;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.getum.SQLite.SQLiteDBHelper;
+import com.example.getum.SQLite.StorageContract;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -15,12 +20,15 @@ import org.json.JSONObject;
 
 public class ScanQR extends AppCompatActivity {
     private IntentIntegrator qrScan;
-    private TextView textView;
+    private SQLiteDBHelper dbHelper;
+    private ImageButton backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qr);
-        textView = (TextView) findViewById(R.id.textViewId);
+        backButton = (ImageButton) findViewById(R.id.back_button);
+        dbHelper = new SQLiteDBHelper(this);
 
         qrScan = new IntentIntegrator(this);
         qrScan.setOrientationLocked(false);
@@ -40,8 +48,15 @@ public class ScanQR extends AppCompatActivity {
                     String id = obj.getString("id");
                     String type = obj.getString("type");
 
-                    Toast.makeText(this, "스캔 완료!", Toast.LENGTH_LONG).show();
-                    textView.setText(id + ": " + type);
+                    if(type.equals("rental")){
+                        Cursor cursor = dbHelper.findStorageById(Integer.parseInt(id));
+                        while(cursor.moveToNext()){
+                            String location = cursor.getString(cursor.getColumnIndexOrThrow(StorageContract.Storage.COLUMN_LOCATION));
+                            Toast.makeText(this, "스캔 완료!", Toast.LENGTH_LONG).show();
+                            cursor.close();
+                            textView.setText("우산함 아이디 : " + id + "\n우산함 주소 : " + location);
+                        }
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
