@@ -171,9 +171,11 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.info) {
-                    Toast.makeText(context, title + ": 설정 정보를 확인합니다.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
+                    startActivity(intent);
                 } else if (id == R.id.logout) {
-                    Toast.makeText(context, title + ": 로그아웃 시도중", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
+                    startActivity(intent);
                 }
 
                 return true;

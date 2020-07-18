@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1968063684/Android_-GetUM.iml" filepath="$PROJECT_DIR$/.idea/modules/1968063684/Android_-GetUM.iml" group="GetUM" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1968063684/GetUM.iml" filepath="$PROJECT_DIR$/.idea/modules/1968063684/GetUM.iml" group="GetUM" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GetUM-app.iml" filepath="$PROJECT_DIR$/.idea/modules/GetUM-app.iml" group="GetUM/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" group="GetUM/app" />
     </modules>
   </component>
