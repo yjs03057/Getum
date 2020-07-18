@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ScanQR extends AppCompatActivity {
     private IntentIntegrator qrScan;
     private TextView textView;
@@ -32,8 +35,16 @@ public class ScanQR extends AppCompatActivity {
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "스캔 완료!", Toast.LENGTH_LONG).show();
-                textView.setText(result.getContents());
+                try {
+                    JSONObject obj = new JSONObject(result.getContents());
+                    String id = obj.getString("id");
+                    String type = obj.getString("type");
+
+                    Toast.makeText(this, "스캔 완료!", Toast.LENGTH_LONG).show();
+                    textView.setText(id + ": " + type);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
