@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,7 @@ public class SignInActivity extends AppCompatActivity {
     EditText pwEditText;
     EditText cardnumEditText;
     EditText phoneEditText;
-
+    private Button nextbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,16 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+        close_button = findViewById(R.id.close_btn);
+        close_button.setOnClickListener(new View.OnClickListener() { //선언
+            @Override
+            public void onClick(View v) {//버튼을 눌렀을떄 second 이동 을 할꺼임
+
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                startActivity(intent);//액티비티 이동
+                finish();
+            }
+        });
 
     }
 }
