@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +19,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private Button createQRBtn;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTimeStamp = dateFormat.format(new Date());
+        dbHelper.insertRentalLogRecord("rental", 1, "00001", 1, currentTimeStamp);
         printTable();
 
         createQRBtn.setOnClickListener(new View.OnClickListener() {
@@ -63,17 +68,7 @@ public class MainActivity extends AppCompatActivity {
         String result = "";
 
         result += "row 개수 : " + cursor.getCount() + "\n";
-        while (cursor.moveToNext()) {
-            Integer userNo = cursor.getInt(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_USER_NO));
-            Integer itemId = cursor.getInt(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_ID));
-            Integer pw = cursor.getInt(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_PW));
-            Integer name = cursor.getInt(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_NAME));
-            Integer cardNo = cursor.getInt(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_CARD_NO));
-            Integer phoneNo = cursor.getInt(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_PHONE_NO));
-            result += userNo + " " + itemId + " " + pw + " " + name + " " + cardNo + " " + phoneNo + "\n";
-        }
-
-        textView.setText(result);
         cursor.close();
+        textView.setText(result);
     }
 }

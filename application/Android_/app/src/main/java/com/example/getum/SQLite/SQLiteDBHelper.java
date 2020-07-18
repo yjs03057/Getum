@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.Timestamp;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static String TAG = "SQLiteDBHelper";
@@ -127,6 +128,27 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.rawQuery(UserContract.User.SQL_READ_TABLE, null);
+        return cursor;
+    }
+
+    public void insertRentalLogRecord(String type, Integer user_no, String umbrella_id, Integer storage_id
+            , String timestamp) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(RentalLogContract.RentalLog.COLUMN_TYPE, type);
+        values.put(RentalLogContract.RentalLog.COLUMN_USER_NO, user_no);
+        values.put(RentalLogContract.RentalLog.COLUMN_UMBRELLA_ID, umbrella_id);
+        values.put(RentalLogContract.RentalLog.COLUMN_STORAGE_ID, storage_id);
+        values.put(RentalLogContract.RentalLog.COLUMN_TIMESTAMP, timestamp);
+
+        db.insert(RentalLogContract.RentalLog.TABLE_NAME, null, values);
+    }
+
+    public Cursor readRentalLogRecord() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(RentalLogContract.RentalLog.SQL_READ_TABLE, null);
         return cursor;
     }
 }
