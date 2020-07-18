@@ -118,6 +118,11 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
             e.printStackTrace();
         }
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTimeStamp = dateFormat.format(new Date());
+        dbHelper.insertRentalLogRecord("rental", 1, "00001", 1, currentTimeStamp);
+
+
         scanQRBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ScanQR.class);

@@ -68,6 +68,16 @@
                 android:orientation="vertical"
                 android:layout_centerHorizontal="true">
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/location"
+                    android:textSize="20dp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:text="대여 우산함 위치 : 영통역">
+                </TextView>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/pay_info"
