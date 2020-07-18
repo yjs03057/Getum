@@ -105,6 +105,10 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
     private Location location;
     private Button scanQRBtn;
     private SQLiteDBHelper dbHelper;
+
+    private View storage_info;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,6 +184,8 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
             }
         });
 
+        storage_info = findViewById(R.id.storage_info_banner);
+
     }
             private Drawable resize(Drawable image) {
                 Bitmap b = ((BitmapDrawable) image).getBitmap();
@@ -244,6 +250,7 @@ implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback
                 mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
+
                     }
                 });
             }

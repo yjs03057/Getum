@@ -35,8 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
             <fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -80,7 +78,8 @@
                 android:layout_height="150dp"
                 android:orientation="horizontal"
                 android:background="@drawable/mustard_bg"
-                android:visibility="visible"
+                android:visibility="gone"
+                android:id="@+id/storage_info_banner"
                 >
 
                 <TextView
