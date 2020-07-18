@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        idEditText = (EditText) findViewById(R.id.sign_in_id);
+        idEditText = (EditText) findViewById(R.id.user_id);
         pwEditText = (EditText) findViewById(R.id.user_password);
 
         helper = new SQLiteDBHelper(this);
