@@ -160,6 +160,14 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public int findMatchedUser(String id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "SELECT * FROM user " + " WHERE id= '" + id + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+        return cursor.getCount();
+      }
+  
     public int UmbrellaInStorage(String storage_id) { //현재 Storage에 있는 Umbrella 개수
         SQLiteDatabase db = getReadableDatabase();
         String query1 = "SELECT * FROM umbrella WHERE storage_id =" + storage_id;
@@ -168,5 +176,13 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         return cursor.getCount();
     }
+  
+    public Cursor findMatchedUserpassword(String password){
+        SQLiteDatabase db = getReadableDatabase();
 
+        String sql = "SELECT * FROM user "  + " WHERE pw= '" + password+"'";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        return cursor;
+    }
 }
