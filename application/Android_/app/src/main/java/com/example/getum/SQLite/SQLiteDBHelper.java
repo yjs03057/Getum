@@ -151,4 +151,23 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(RentalLogContract.RentalLog.SQL_READ_TABLE, null);
         return cursor;
     }
+
+    public int findMatchedUser(String id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "SELECT * FROM user " + " WHERE id= '" + id + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        return cursor.getCount();
+    }
+
+    public Cursor findMatchedUserpassword(String password){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String sql = "SELECT * FROM user "  + " WHERE pw= '" + password+"'";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        return cursor;
+    }
+
 }
