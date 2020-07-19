@@ -86,12 +86,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static android.widget.Toast.*;
+
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback, GoogleMap.OnMarkerClickListener {
 
     private DrawerLayout mDrawerLayout;
-    private Context context = this;
+    public static Context context;
     private View mLayout;
 
     private GoogleMap mMap;
@@ -122,11 +124,14 @@ public class MainActivity extends AppCompatActivity
     private TextView storage_address;
     private TextView um_cnt;
 
+    private static int login_flag = 0;  //로그인, 로그아웃 구분
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = this;
 
         storage_info_flag = 0;
 
@@ -208,14 +213,28 @@ public class MainActivity extends AppCompatActivity
         navigationView.getHeaderView(0).findViewById(R.id.btn_user).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-                startActivity(intent);
+                //사용자 정보
+
+                if(login_flag == 0){
+                    Toast toast = makeText(getApplicationContext(), "로그인을 진행해주세요.", LENGTH_LONG);
+                    toast.show();
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                    //intent.putextra
+                    startActivity(intent);
+                }
             }
         });
 
 
         storage_info = findViewById(R.id.storage_info_banner);
 
+        //AFter Login
+        if(login_flag == 1){
+            Intent user_intent = getIntent();
+            Log.d("user",user_intent.getExtras().getString("name"));
+        }
     }
 
     private Drawable resize(Drawable image) {
@@ -379,17 +398,17 @@ public class MainActivity extends AppCompatActivity
             );
 
         } catch (IOException ioException) {
-            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
+            makeText(this, "지오코더 서비스 사용불가", LENGTH_LONG).show();
             return "지오코더 서비스 사용불가";
 
         } catch (IllegalArgumentException illegalArgumentException) {
-            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
+            makeText(this, "잘못된 GPS 좌표", LENGTH_LONG).show();
             return "잘못된 GPS 좌표";
         }
 
 
         if (addresses == null || addresses.size() == 0) {
-            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
+            makeText(this, "주소 미발견", LENGTH_LONG).show();
             return "주소 미발견";
         } else {
             Address address = addresses.get(0);
@@ -624,6 +643,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void setLogin_flag(int i){
+        login_flag = i;
+    }
 
+    public int getLogin_flag(){
+        return login_flag;
+    }
 
 }
