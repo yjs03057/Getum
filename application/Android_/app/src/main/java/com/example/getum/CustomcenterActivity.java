@@ -18,7 +18,7 @@ public class CustomcenterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customcenter);
 
 
-        close_button = findViewById(R.id.close_btn);// btn_second 버튼 아이디을 찾아 와라!
+        close_button = findViewById(R.id.back_button);// btn_second 버튼 아이디을 찾아 와라!
         close_button.setOnClickListener(new View.OnClickListener() { //선언
 
 
