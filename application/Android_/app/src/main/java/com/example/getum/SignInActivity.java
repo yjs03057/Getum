@@ -35,6 +35,9 @@ public class SignInActivity extends AppCompatActivity {
     EditText pwEditText;
     EditText cardnumEditText;
     EditText phoneEditText;
+    private Button nextbutton;
+    DecimalFormat card_df = new DecimalFormat("####,####,####,####");
+    String result_card = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,24 @@ public class SignInActivity extends AppCompatActivity {
         phoneEditText = (EditText) findViewById(R.id.phonenumber);
 
         phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
+        cardnumEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(!charSequence.toString().equals(result_card)){
+                    result_card = card_df.format(Long.parseLong(charSequence.toString().replace(",","")));
+                    cardnumEditText.setText(result_card);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) { }
+        });
 
 
         close_button = findViewById(R.id.close_btn);
