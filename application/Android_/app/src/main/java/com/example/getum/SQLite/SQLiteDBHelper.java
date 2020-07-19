@@ -61,18 +61,20 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     private void copyDataBase() throws IOException
     {
-        InputStream mInput = mContext.getAssets().open(DATABASE_NAME);
-        String outFileName = DATABASE_PATH + DATABASE_NAME;
-        OutputStream mOutput = new FileOutputStream(outFileName);
-        byte[] mBuffer = new byte[1024];
-        int mLength;
-        while ((mLength = mInput.read(mBuffer))>0)
-        {
-            mOutput.write(mBuffer, 0, mLength);
+        if (checkDataBase() == false){
+            InputStream mInput = mContext.getAssets().open(DATABASE_NAME);
+            String outFileName = DATABASE_PATH + DATABASE_NAME;
+            OutputStream mOutput = new FileOutputStream(outFileName);
+            byte[] mBuffer = new byte[1024];
+            int mLength;
+            while ((mLength = mInput.read(mBuffer))>0)
+            {
+                mOutput.write(mBuffer, 0, mLength);
+            }
+            mOutput.flush();
+            mOutput.close();
+            mInput.close();
         }
-        mOutput.flush();
-        mOutput.close();
-        mInput.close();
     }
 
     public boolean openDataBase() throws SQLException
@@ -175,6 +177,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         String query = "SELECT * FROM user " + "WHERE id='"+ user_id+"'";
         Cursor cursor = db.rawQuery(query, null);
+        Log.d("query: ", query + ", " + cursor.getCount());
 
         return cursor;
     }

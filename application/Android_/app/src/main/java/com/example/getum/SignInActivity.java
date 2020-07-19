@@ -76,7 +76,7 @@ public class SignInActivity extends AppCompatActivity {
                 toast.show();
                 Intent intent = new Intent(SignInActivity.this, LoginActivity.class);
                 startActivity(intent);//액티비티 이동
-                }
+            }
             }
         });
 

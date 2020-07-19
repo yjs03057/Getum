@@ -133,8 +133,6 @@ public class UserActivity extends AppCompatActivity {
 
         }
 
-        //recordDataList.add(new RecordData());
-
     }
 
 }

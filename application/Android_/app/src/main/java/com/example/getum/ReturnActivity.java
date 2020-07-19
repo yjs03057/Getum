@@ -19,6 +19,7 @@ public class ReturnActivity extends AppCompatActivity {
     private Button backToMenuButton;
     private Intent beforeIntent;
     private SQLiteDBHelper dbHelper;
+    public Integer user_no;
     public String id;
     public String name;
     public String cardno;
@@ -74,6 +75,7 @@ public class ReturnActivity extends AppCompatActivity {
     }
 
     protected void getExtras(Intent beforeIntent){
+        user_no = beforeIntent.getExtras().getInt("userno");
         id = beforeIntent.getExtras().getString("id");
         name = beforeIntent.getExtras().getString("name");
         cardno = beforeIntent.getExtras().getString("cardno");
@@ -82,6 +84,7 @@ public class ReturnActivity extends AppCompatActivity {
     }
 
     protected void setExtras(Intent newIntent){
+        newIntent.putExtra("userno", user_no);
         newIntent.putExtra("id", id);
         newIntent.putExtra("name", name);
         newIntent.putExtra("cardno", cardno);
