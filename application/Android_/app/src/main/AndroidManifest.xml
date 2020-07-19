@@ -17,6 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".description"></activity>
+        <activity android:name=".Howto" />
         <activity android:name=".ProceedPay"></activity>
         <activity android:name=".SignInActivity" />
         <activity android:name=".CustomcenterActivity" />
