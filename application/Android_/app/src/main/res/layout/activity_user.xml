@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mustard_bg">
+
+    <androidx.appcompat.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/toolbar"
+        android:background="#1A83BC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#1A83BC"
+            android:src="@drawable/back_button"/>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            style="@style/toolbartitle"
+            android:text="GET UM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:text="사용자 정보"
+        android:fontFamily="@font/bazzi"
+        android:background="@drawable/mustard_bar_with_blueline"
+        android:textSize="40dp"
+        />
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <TextView
+            style="@style/userinfo"
+            android:text=" ID: "
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:gravity="center"/>
+
+        <TextView
+            style="@style/userinfo"
+            android:id="@+id/tv_user_id"
+            android:text="user id"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:gravity="center"/>
+
+        <TextView
+            style="@style/userinfo"
+            android:text=" 이름: "
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:gravity="center"/>
+
+        <TextView
+            style="@style/userinfo"
+            android:id="@+id/tv_user_name"
+            android:text="user name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:gravity="center"/>
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:text="카드정보"
+        android:fontFamily="@font/bazzi"
+        android:background="@drawable/mustard_bar_with_blueline"
+        android:textSize="40dp"
+        />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="20dp"
+        android:columnCount="2"
+        android:rowCount="2"
+        >
+
+        <TextView
+            style="@style/userinfo"
+            android:text="카드번호: "
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:gravity="center"/>
+
+        <TextView
+            style="@style/userinfo"
+            android:id="@+id/tv_cardnum"
+            android:text="xxxx-xxxx-xxxx-xxxx"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:gravity="center"/>
+
+        <TextView
+            style="@style/userinfo"
+            android:text="유효기간: "
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:gravity="center"/>
+
+        <TextView
+            style="@style/userinfo"
+            android:id="@+id/tv_cardnum_expiration"
+            android:text="YY/MM"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:gravity="center"/>
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:text="대여/반납"
+        android:fontFamily="@font/bazzi"
+        android:background="@drawable/mustard_bar_with_blueline"
+        android:textSize="40dp"
+        />
+
+    <ListView
+        android:id="@+id/record_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"/>
+
+
+</LinearLayout>

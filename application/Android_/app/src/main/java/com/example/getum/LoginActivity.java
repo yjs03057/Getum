@@ -26,16 +26,15 @@ public class LoginActivity extends AppCompatActivity {
     private ImageButton close_button;
     private Button sign_in_button;
 
-    String sql;
-    Cursor cursor;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         idEditText = (EditText) findViewById(R.id.user_id);
-        idEditText = (EditText) findViewById(R.id.user_password);
+        pwEditText = (EditText) findViewById(R.id.user_password);
+
+        helper = new SQLiteDBHelper(this);
 
         close_button = findViewById(R.id.close_btn);
         sign_in_button = (Button) findViewById(R.id.sign_in);
@@ -55,21 +54,28 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                sql = "SELECT id FROM user WHERE id = '" + id + "'";
-                //cursor =
+                int findMatchedUser = helper.findMatchedUser(id);
+                if(findMatchedUser != 1) {
+                    Toast toast = Toast.makeText(LoginActivity.this, "아이디가 올바르지 않습니다..", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
 
+                Cursor cursor = helper.findMatchedUserpassword(pw);
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);//액티비티 이동
+                if(cursor.getCount() != 1) {
+                    Toast toast = Toast.makeText(LoginActivity.this, "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
+                    Toast toast  = Toast.makeText(LoginActivity.this, "로그인성공", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);//액티비티 이동
+                    finish();
+                }
             }
         });
-
-        // helper에서 불러오기
-        helper = new SQLiteDBHelper(this);
-        // helper에 값 넣기
-        //helper.insertUserRecord("""""""""""");
-
-
 
 
         close_button.setOnClickListener(new View.OnClickListener() { //선언
