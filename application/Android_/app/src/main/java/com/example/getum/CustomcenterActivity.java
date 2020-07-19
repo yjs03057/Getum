@@ -21,9 +21,7 @@ public class CustomcenterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {//버튼을 눌렀을떄 second 이동 을 할꺼임
-
-                Intent intent = new Intent(CustomcenterActivity.this, MainActivity.class);
-                startActivity(intent);//액티비티 이동
+                finish();
             }
         });
     }

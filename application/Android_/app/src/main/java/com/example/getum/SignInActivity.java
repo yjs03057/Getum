@@ -66,6 +66,7 @@ public class SignInActivity extends AppCompatActivity {
                 if(!charSequence.toString().equals(result_card)){
                     result_card = card_df.format(Long.parseLong(charSequence.toString().replace(",","")));
                     cardnumEditText.setText(result_card);
+                    cardnumEditText.setSelection(result_card.length());
                 }
             }
 
@@ -74,18 +75,18 @@ public class SignInActivity extends AppCompatActivity {
         });
 
 
-        close_button = findViewById(R.id.close_btn);
+        close_button = findViewById(R.id.back_button);
         finished = findViewById(R.id.finished_button);
 
         finished.setOnClickListener(new View.OnClickListener() { //선언
             @Override
             public void onClick(View v) {
-                //helper에 값 넣기
-                helper.insertUserRecord(idEditText.getText().toString(), pwEditText.getText().toString(), nameEditText.getText().toString(), cardnumEditText.getText().toString(), phoneEditText.getText().toString());
-                Cursor cursor = helper.readUserRecord();
-                while(cursor.moveToNext()) {
-                    Log.d("fff", cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_PW)));
-                }
+            //helper에 값 넣기
+            helper.insertUserRecord(idEditText.getText().toString(), pwEditText.getText().toString(), nameEditText.getText().toString(), cardnumEditText.getText().toString(), phoneEditText.getText().toString());
+                Toast toast  = Toast.makeText(SignInActivity.this, "회원가입 완료", Toast.LENGTH_SHORT);
+                toast.show();
+                Intent intent = new Intent(SignInActivity.this, LoginActivity.class);
+                startActivity(intent);//액티비티 이동
             }
         });
 
@@ -100,7 +101,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-        close_button = findViewById(R.id.close_btn);
+        close_button = findViewById(R.id.back_button);
         close_button.setOnClickListener(new View.OnClickListener() { //선언
             @Override
             public void onClick(View v) {//버튼을 눌렀을떄 second 이동 을 할꺼임

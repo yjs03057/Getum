@@ -225,6 +225,8 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
                     startActivity(intent);
                 } else if(id == R.id.customercenter){
+                    Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
+                    startActivity(intent);
 
                 } else if (id == R.id.logout) {
                     Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
@@ -448,9 +450,7 @@ public class MainActivity extends AppCompatActivity
         markerOptions.title(markerTitle);
         markerOptions.snippet(markerSnippet);
         markerOptions.draggable(true);
-
         currentMarker = mMap.addMarker(markerOptions);
-
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
         mMap.moveCamera(cameraUpdate);
          */
