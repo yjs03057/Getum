@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,10 +39,22 @@ public class ScanQR extends AppCompatActivity {
     private Button qrBack;
     private Button payButton;
     private BottomSheetBehavior bottomSheetBehavior;
+    private Button proceedPayButton;
+    private RelativeLayout activityMain;
+    private Intent beforeIntent;
+    private RadioButton payCardNo;
+    public String id;
+    public String name;
+    public String cardno;
+    public String phoneno;
+    public String storage_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        beforeIntent = getIntent();
+        getExtras(beforeIntent);
+
         setContentView(R.layout.activity_scan_qr);
         backButton = (ImageButton) findViewById(R.id.back_button);
         qrImage = (ImageView) findViewById(R.id.qr_image);
@@ -48,11 +62,17 @@ public class ScanQR extends AppCompatActivity {
         locationText = (TextView) findViewById(R.id.location);
         qrBack = (Button) findViewById(R.id.qr_backbutton);
         payButton = (Button) findViewById(R.id.qr_paybutton);
+        activityMain = (RelativeLayout) findViewById(R.id.activity_main);
+        proceedPayButton = (Button) findViewById(R.id.proceed_pay);
+        payCardNo = (RadioButton) findViewById(R.id.pay_card_no);
+        payCardNo.setText(cardno);
+
         dbHelper = new SQLiteDBHelper(this);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ScanQR.this, MainActivity.class);
+                setExtras(intent);
                 startActivity(intent);
                 finish();
             }
@@ -61,6 +81,7 @@ public class ScanQR extends AppCompatActivity {
         qrBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ScanQR.this, MainActivity.class);
+                setExtras(intent);
                 startActivity(intent);
                 finish();
             }
@@ -89,9 +110,25 @@ public class ScanQR extends AppCompatActivity {
             }
         });
 
+        activityMain.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
+
         payButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        proceedPayButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ScanQR.this, ProceedPay.class);
+                setExtras(intent);
+                intent.putExtra("storage_id", storage_id);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -99,6 +136,20 @@ public class ScanQR extends AppCompatActivity {
         qrScan.setOrientationLocked(false);
         qrScan.setPrompt("QR코드/바코드를 인식시켜주세요");
         qrScan.initiateScan();
+    }
+
+    protected void getExtras(Intent beforeIntent){
+        id = beforeIntent.getExtras().getString("id");
+        name = beforeIntent.getExtras().getString("name");
+        cardno = beforeIntent.getExtras().getString("cardno");
+        phoneno = beforeIntent.getExtras().getString("phoneno");
+    }
+
+    protected void setExtras(Intent newIntent){
+        newIntent.putExtra("id", id);
+        newIntent.putExtra("name", name);
+        newIntent.putExtra("cardno", cardno);
+        newIntent.putExtra("phoneno", phoneno);
     }
 
     @Override
@@ -111,17 +162,17 @@ public class ScanQR extends AppCompatActivity {
             } else {
                 try {
                     JSONObject obj = new JSONObject(result.getContents());
-                    String id = obj.getString("id");
+                    storage_id = obj.getString("id");
                     String type = obj.getString("type");
                     String location = "";
                     if(type.equals("rental")){
-                        Cursor cursor = dbHelper.findStorageById(Integer.parseInt(id));
+                        Cursor cursor = dbHelper.findStorageById(Integer.parseInt(storage_id));
                         while(cursor.moveToNext()){
                             location = cursor.getString(cursor.getColumnIndexOrThrow(StorageContract.Storage.COLUMN_LOCATION));
                             Toast.makeText(this, "스캔 완료", Toast.LENGTH_LONG).show();
                             cursor.close();
                         }
-                        String img = type + "_" + id;
+                        String img = type + "_" + storage_id;
                         qrImage.setImageResource(getResources().getIdentifier(img, "drawable", getPackageName()));
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");

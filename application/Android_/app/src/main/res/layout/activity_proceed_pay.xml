@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScanQR"
-    >
+    tools:context=".ProceedPay">
     <RelativeLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
@@ -26,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageButton
-                    android:id="@+id/back_button"
+                    android:id="@+id/pay_back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -48,109 +46,78 @@
                 android:background="@drawable/mustard_bg">
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="100dp"
                     android:id="@+id/blank">
                 </View>
                 <ImageView
                     android:layout_below="@id/blank"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/qr_image"
-                    android:src="@drawable/rental_1">
+                    android:id="@+id/check_image"
+                    android:src="@drawable/confirm_logo">
                 </ImageView>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="80dp"
                     android:id="@+id/blank2"
-                    android:layout_below="@id/qr_image">
+                    android:layout_below="@id/check_image">
                 </View>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/blank2"
-                    android:id="@+id/informations"
+                    android:id="@+id/confirm"
                     android:orientation="vertical"
                     android:layout_centerHorizontal="true">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/location"
-                        android:textSize="20dp"
+                        android:id="@+id/confirm_message"
+                        android:textSize="25dp"
                         android:textColor="#ffffff"
                         android:textStyle="bold"
                         android:textAlignment="center"
-                        android:text="대여 우산함 위치 : 영통역">
-                    </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/pay_info"
-                        android:textSize="20dp"
-                        android:textColor="#ffffff"
-                        android:textStyle="bold"
-                        android:text="반납기한 : 2020년 07월 31일">
+                        android:text="결제되었습니다"
+                        android:layout_marginBottom="10dp">
                     </TextView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/charge"
-                        android:textSize="20dp"
-                        android:textColor="#ffffff"
-                        android:textStyle="bold"
-                        android:textAlignment="center"
-                        android:text="결제 금액 : 3000원">
-                    </TextView>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/additional"
                         android:textSize="15dp"
                         android:textColor="#ffffff"
                         android:textStyle="bold"
                         android:textAlignment="center"
-                        android:text="\n(반납 후 2000원이 환급됩니다)">
+                        android:text="반납기한 내에 우산을 반납하지 않으면\n보증금이 환불되지 않습니다">
                     </TextView>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="80dp"
                     android:id="@+id/blank3"
-                    android:layout_below="@id/informations">
+                    android:layout_below="@id/confirm">
                 </View>
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_below="@id/blank3"
-                    android:layout_centerHorizontal="true">
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="80dp">
                     <Button
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/charge"
-                        android:id="@+id/qr_backbutton"
+                        android:id="@+id/back_to_menu"
                         android:textSize="20dp"
                         android:layout_marginRight="5dp"
                         android:background="@drawable/pay_button"
                         android:textColor="#ffffff"
                         android:textStyle="bold"
-                        android:text="취소">
-                    </Button>
-                    <Button
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/charge"
-                        android:id="@+id/qr_paybutton"
-                        android:textSize="20dp"
-                        android:layout_marginLeft="5dp"
-                        android:background="@drawable/pay_button"
-                        android:textColor="#ffffff"
-                        android:textStyle="bold"
-                        android:text="결제하기">
+                        android:text="돌아가기">
                     </Button>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
-    <include layout="@layout/bottom_sheet" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

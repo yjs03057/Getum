@@ -13,7 +13,8 @@
     </style>
 
     <style name="toolbartitle">
-        <item name="android:textSize">50dp</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/bazzi</item>
         <item name="android:textColor">#ffffff</item>
     </style>
