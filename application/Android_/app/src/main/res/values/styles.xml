@@ -10,6 +10,7 @@
     <style name="userinfo">
         <item name="android:textSize">30dp</item>
         <item name="fontFamily">@font/bazzi</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <style name="toolbartitle">
