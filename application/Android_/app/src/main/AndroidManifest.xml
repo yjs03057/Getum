@@ -23,6 +23,7 @@
         <activity android:name=".CreateQR" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".UserActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

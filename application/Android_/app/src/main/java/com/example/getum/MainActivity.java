@@ -205,6 +205,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        navigationView.getHeaderView(0).findViewById(R.id.btn_user).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         storage_info = findViewById(R.id.storage_info_banner);
 
     }
