@@ -3,6 +3,9 @@ package com.example.getum;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +22,8 @@ import com.example.getum.R;
 import com.example.getum.SQLite.SQLiteDBHelper;
 import com.example.getum.SQLite.UserContract;
 
+import java.text.DecimalFormat;
+
 public class SignInActivity extends AppCompatActivity {
     SQLiteDBHelper helper;
 
@@ -30,7 +35,6 @@ public class SignInActivity extends AppCompatActivity {
     EditText pwEditText;
     EditText cardnumEditText;
     EditText phoneEditText;
-    private Button nextbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,9 @@ public class SignInActivity extends AppCompatActivity {
         pwEditText = (EditText) findViewById(R.id.sign_in_pw);
         cardnumEditText = (EditText) findViewById(R.id.cardnumber);
         phoneEditText = (EditText) findViewById(R.id.phonenumber);
+
+        phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
 
         close_button = findViewById(R.id.close_btn);
         finished = findViewById(R.id.finished_button);
