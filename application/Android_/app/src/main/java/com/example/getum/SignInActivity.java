@@ -55,42 +55,30 @@ public class SignInActivity extends AppCompatActivity {
 
         phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
-        cardnumEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!charSequence.toString().equals(result_card)){
-                    result_card = card_df.format(Long.parseLong(charSequence.toString().replace(",","")));
-                    cardnumEditText.setText(result_card);
-                    cardnumEditText.setSelection(result_card.length());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) { }
-        });
-
-
         close_button = findViewById(R.id.back_button);
         finished = findViewById(R.id.finished_button);
 
         finished.setOnClickListener(new View.OnClickListener() { //선언
             @Override
             public void onClick(View v) {
-            //helper에 값 넣기
-            helper.insertUserRecord(idEditText.getText().toString(), pwEditText.getText().toString(), nameEditText.getText().toString(), cardnumEditText.getText().toString(), phoneEditText.getText().toString());
+            // 아이디 중복확인
+            String id = idEditText.getText().toString();
+            int id_check = helper.findMatchedUser(id);
+            if(id_check == 1) {
+                Toast toast  = Toast.makeText(SignInActivity.this, "중복되는 아이디입니다.", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+            else{
+                //helper에 값 넣기
+                helper.insertUserRecord(idEditText.getText().toString(), pwEditText.getText().toString(), nameEditText.getText().toString(), cardnumEditText.getText().toString(), phoneEditText.getText().toString());
                 Toast toast  = Toast.makeText(SignInActivity.this, "회원가입 완료", Toast.LENGTH_SHORT);
                 toast.show();
                 Intent intent = new Intent(SignInActivity.this, LoginActivity.class);
                 startActivity(intent);//액티비티 이동
+                }
             }
         });
-
-
 
         close_button.setOnClickListener(new View.OnClickListener() { //선언
             @Override

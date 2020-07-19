@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoActivity">
+
+    <ImageButton
+        android:id="@+id/close_btn"
+        android:layout_width="30dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close" />
+
+    <TextView
+        android:id="@+id/infotitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="대여방법"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/service_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="100dp"
+        android:text="대여 방법"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="2dp"
+        android:background="#000000"
+        app:layout_constraintTop_toBottomOf="@id/service_info"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="140dp" />
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="1) 지도를 통해 근처에 있는 우산보관함을 조회하세요. \n2) 지도에서 원하는 곳의 보관함의 남은 우산 개수를 확인하세요. \n3) 보관함을 가서 보관함에 부착되어있는 QR코드를 인식해주세요. \n4) 우산사용을 끝난 이후 지도를 통해 반납할 우산함의 위치를 확인해주세요. \n5) 우산함에 우산을 넣으시면 보관함에 부착되어있는 화면을 통해 반납 QR를 확인할 수 있습니다. \n6) '반납하기' 버튼을 누른 후 보관함의 QR코드를 인식하면 반납이 완료됩니다."
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="※ 반납의 유무를 반납 QR을 인식으로 확인하기에 반납 QR코드를 인식하지 않으시면 반납을 진행하지 않은 것으로 판단해 보증금 환급이 이루어지지 않을 수 있습니다. "
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

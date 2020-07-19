@@ -19,6 +19,8 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ReturnActivity"></activity>
         <activity android:name=".ProceedPay" />
+        <activity android:name=".description"></activity>
+        <activity android:name=".Howto" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".CustomcenterActivity" />
         <activity android:name=".ScanQR" />

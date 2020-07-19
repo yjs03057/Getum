@@ -41,7 +41,7 @@ public class MyAdapter extends BaseAdapter {
     public View getView(int i, View converview, ViewGroup viewGroup) {
         View view = mLayoutInflater.inflate(R.layout.simple_record_view, null);
 
-        ImageView imageView = (ImageView)view.findViewById(R.id.rent_flag);
+        ImageView imageView = (ImageView)view.findViewById(R.id.rent_return);
         TextView location = (TextView)view.findViewById(R.id.tv_location);
         TextView timestamp = (TextView)view.findViewById(R.id.tv_timestamp);
 
