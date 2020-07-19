@@ -1,7 +1,10 @@
 package com.example.getum;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -13,6 +16,8 @@ import java.util.List;
 public class UserActivity extends AppCompatActivity {
 
     ArrayList<RecordData> recordDataList;
+
+    ImageButton backButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +31,14 @@ public class UserActivity extends AppCompatActivity {
 
         userRecord.setAdapter(myAdapter);
 
+        backButton = (ImageButton) findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 

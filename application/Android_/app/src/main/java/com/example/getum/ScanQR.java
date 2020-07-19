@@ -48,6 +48,7 @@ public class ScanQR extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ScanQR.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -55,6 +56,7 @@ public class ScanQR extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ScanQR.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -70,6 +72,7 @@ public class ScanQR extends AppCompatActivity {
         if(result != null) {
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                finish();
             } else {
                 try {
                     JSONObject obj = new JSONObject(result.getContents());
@@ -100,6 +103,14 @@ public class ScanQR extends AppCompatActivity {
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        finish();
     }
 }
