@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 import android.util.Log;
@@ -40,41 +41,64 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
     public void createDataBase() throws IOException
     {
-        this.getReadableDatabase();
-        this.close();
-        try
-        {
-            copyDataBase();
-            Log.e(TAG, "createDatabase database created");
-        }
-        catch (IOException mIOException)
-        {
-            throw new Error("ErrorCopyingDataBase");
-        }
-    }
 
+        boolean dbExist = checkDataBase();
+
+        if(dbExist)
+        {
+            Log.v("DB Exists", "db exists");
+            // By calling this method here onUpgrade will be called on a
+            // writeable database, but only if the version number has been
+            // bumped
+            //onUpgrade(myDataBase, DATABASE_VERSION_old, DATABASE_VERSION);
+        }
+
+        boolean dbExist1 = checkDataBase();
+        if(!dbExist1)
+        {
+            this.getReadableDatabase();
+            try
+            {
+                this.close();
+                copyDataBase();
+            }
+            catch (IOException e)
+            {
+                throw new Error("Error copying database");
+            }
+        }
+
+    }
+    //Check database already exist or not
     private boolean checkDataBase()
     {
-        File dbFile = new File(DATABASE_PATH + DATABASE_NAME);
-        return dbFile.exists();
+        boolean checkDB = false;
+        try
+        {
+            String myPath = DATABASE_PATH + DATABASE_NAME;
+            File dbfile = new File(myPath);
+            checkDB = dbfile.exists();
+        }
+        catch(SQLiteException e)
+        {
+        }
+        return checkDB;
     }
-
+    //Copies your database from your local assets-folder to the just created empty database in the system folder
     private void copyDataBase() throws IOException
     {
-        if (checkDataBase() == false){
-            InputStream mInput = mContext.getAssets().open(DATABASE_NAME);
-            String outFileName = DATABASE_PATH + DATABASE_NAME;
-            OutputStream mOutput = new FileOutputStream(outFileName);
-            byte[] mBuffer = new byte[1024];
-            int mLength;
-            while ((mLength = mInput.read(mBuffer))>0)
-            {
-                mOutput.write(mBuffer, 0, mLength);
-            }
-            mOutput.flush();
-            mOutput.close();
-            mInput.close();
+
+        InputStream mInput = mContext.getAssets().open(DATABASE_NAME);
+        String outFileName = DATABASE_PATH + DATABASE_NAME;
+        OutputStream mOutput = new FileOutputStream(outFileName);
+        byte[] mBuffer = new byte[2024];
+        int mLength;
+        while ((mLength = mInput.read(mBuffer)) > 0) {
+            mOutput.write(mBuffer, 0, mLength);
         }
+        mOutput.flush();
+        mOutput.close();
+        mInput.close();
     }
 
     public boolean openDataBase() throws SQLException
