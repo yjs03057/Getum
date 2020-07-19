@@ -1,149 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.getum.ScanQR">
-    <LinearLayout
+    tools:context=".ScanQR"
+    >
+    <RelativeLayout
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:background="@drawable/mustard_bg">
-        <androidx.appcompat.widget.Toolbar
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/toolbar"
-            android:background="#1A83BC"
+        tools:context="com.example.getum.ScanQR">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/back_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#1A83BC"
-                android:src="@drawable/back_button"/>
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:text="GET UM"
-                android:textColor="#ffffff"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </androidx.appcompat.widget.Toolbar>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
             android:background="@drawable/mustard_bg">
-            <View
+            <androidx.appcompat.widget.Toolbar
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/toolbar"
+                android:background="#1A83BC"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:id="@+id/blank">
-            </View>
-            <ImageView
-                android:layout_below="@id/blank"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/qr_image"
-                android:src="@drawable/rental_1">
-            </ImageView>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/blank2"
-                android:layout_below="@id/qr_image">
-            </View>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/blank2"
-                android:id="@+id/informations"
-                android:orientation="vertical"
-                android:layout_centerHorizontal="true">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/location"
-                    android:textSize="20dp"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:text="대여 우산함 위치 : 영통역">
-                </TextView>
-                <TextView
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pay_info"
-                    android:textSize="20dp"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:text="반납기한 : 2020년 07월 31일">
-                </TextView>
+                    android:layout_weight="1"
+                    android:background="#1A83BC"
+                    android:src="@drawable/back_button"/>
+
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/charge"
-                    android:textSize="20dp"
+                    android:id="@+id/toolbar_title"
+                    android:text="GET UM"
                     android:textColor="#ffffff"
+                    android:textSize="30dp"
                     android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:text="결제 금액 : 3000원">
-                </TextView>
-                <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/additional"
-                    android:textSize="15dp"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:text="\n(반납 후 2000원이 환급됩니다)">
-                </TextView>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/blank3"
-                android:layout_below="@id/informations">
-            </View>
-            <LinearLayout
+                    android:layout_gravity="center" />
+            </androidx.appcompat.widget.Toolbar>
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@id/blank3"
-                android:layout_centerHorizontal="true">
-                <Button
-                    android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/mustard_bg">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:id="@+id/blank">
+                </View>
+                <ImageView
+                    android:layout_below="@id/blank"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/qr_image"
+                    android:src="@drawable/rental_1">
+                </ImageView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/blank2"
+                    android:layout_below="@id/qr_image">
+                </View>
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/charge"
-                    android:id="@+id/qr_backbutton"
-                    android:textSize="20dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/pay_button"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:text="취소">
-                </Button>
-                <Button
-                    android:layout_width="150dp"
+                    android:layout_below="@id/blank2"
+                    android:id="@+id/informations"
+                    android:orientation="vertical"
+                    android:layout_centerHorizontal="true">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/location"
+                        android:textSize="20dp"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:text="대여 우산함 위치 : 영통역">
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pay_info"
+                        android:textSize="20dp"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:text="반납기한 : 2020년 07월 31일">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/charge"
+                        android:textSize="20dp"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:text="결제 금액 : 3000원">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/additional"
+                        android:textSize="15dp"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:text="\n(반납 후 2000원이 환급됩니다)">
+                    </TextView>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/blank3"
+                    android:layout_below="@id/informations">
+                </View>
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/charge"
-                    android:id="@+id/qr_paybutton"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/pay_button"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:text="결제하기">
-                </Button>
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+                    android:orientation="horizontal"
+                    android:layout_below="@id/blank3"
+                    android:layout_centerHorizontal="true">
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/charge"
+                        android:id="@+id/qr_backbutton"
+                        android:textSize="20dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/pay_button"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:text="취소">
+                    </Button>
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/charge"
+                        android:id="@+id/qr_paybutton"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/pay_button"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:text="결제하기">
+                    </Button>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <include layout="@layout/bottom_sheet" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

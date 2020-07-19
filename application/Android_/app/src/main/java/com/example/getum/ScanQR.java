@@ -5,15 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.getum.SQLite.SQLiteDBHelper;
 import com.example.getum.SQLite.StorageContract;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -32,6 +35,8 @@ public class ScanQR extends AppCompatActivity {
     private TextView payInfo;
     private TextView locationText;
     private Button qrBack;
+    private Button payButton;
+    private BottomSheetBehavior bottomSheetBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class ScanQR extends AppCompatActivity {
         payInfo = (TextView) findViewById(R.id.pay_info);
         locationText = (TextView) findViewById(R.id.location);
         qrBack = (Button) findViewById(R.id.qr_backbutton);
+        payButton = (Button) findViewById(R.id.qr_paybutton);
         dbHelper = new SQLiteDBHelper(this);
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +61,35 @@ public class ScanQR extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ScanQR.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        LinearLayout bottomsheetLayout = (LinearLayout) findViewById(R.id.bottom_sheet);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomsheetLayout);
+
+        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        break;
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                        break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        break;
+                }
+            }
+            @Override public void onSlide(View bottomSheet, float slideOffset) {
+            }
+        });
+
+        payButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
 
