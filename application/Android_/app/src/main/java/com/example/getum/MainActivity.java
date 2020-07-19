@@ -192,7 +192,15 @@ public class MainActivity extends AppCompatActivity
         um_cnt = (TextView)findViewById(R.id.um_cnt);
 
 
-
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if(login_flag == 1){
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.navi_menu_account);
+        }
+        else{
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.navi_menu);
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -203,12 +211,23 @@ public class MainActivity extends AppCompatActivity
                 String title = menuItem.getTitle().toString();
 
                 if (id == R.id.account) {
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
+                    if(login_flag == 1){
+                        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
                 } else if (id == R.id.info) {
                     Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.customercenter) {
+
+                } else if(id == R.id.customercenter){
+
+                } else if (id == R.id.logout) {
+
                     Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
                     startActivity(intent);
                 }
@@ -217,22 +236,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        navigationView.getHeaderView(0).findViewById(R.id.btn_user).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //사용자 정보
-
-                if(login_flag == 0){
-                    Toast toast = makeText(getApplicationContext(), "로그인을 진행해주세요.", LENGTH_LONG);
-                    toast.show();
-                }
-                else{
-                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-                    //intent.putextra
-                    startActivity(intent);
-                }
-            }
-        });
 
 
         storage_info = findViewById(R.id.storage_info_banner);
