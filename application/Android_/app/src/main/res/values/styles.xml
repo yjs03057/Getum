@@ -20,4 +20,10 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <style name="listviewitem">
+        <item name="android:textSize">30dp</item>
+        <item name="fontFamily">@font/bazzi</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 </resources>

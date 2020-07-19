@@ -13,7 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.Timestamp;
 
 public class SQLiteDBHelper extends SQLiteOpenHelper {
     private static String TAG = "SQLiteDBHelper";
@@ -186,11 +185,23 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor getRentalLog(String user_id){
+    public Cursor getRentalLog(String user_no){
         SQLiteDatabase db = getReadableDatabase();
-        String query1 = "SELECT * FROM rental_log WHERE user_no =" + user_id;
+        String query1 = "SELECT * FROM rental_log WHERE user_no = "+user_no;
         Cursor cursor = db.rawQuery(query1, null);
 
+        Log.d("query",query1);
         return cursor;
+    }
+
+    public String getStoragename(int storage_id){
+        SQLiteDatabase db = getReadableDatabase();
+        String query1 = "SELECT * FROM storage WHERE id = " + Integer.toString(storage_id);
+        Cursor cursor = db.rawQuery(query1, null);
+
+        cursor.moveToNext();
+        Log.d("query",query1);
+        Log.d("locname",cursor.getString(cursor.getColumnIndexOrThrow(StorageContract.Storage.COLUMN_LOCATION)));
+        return cursor.getString(cursor.getColumnIndexOrThrow(StorageContract.Storage.COLUMN_LOCATION));
     }
 }

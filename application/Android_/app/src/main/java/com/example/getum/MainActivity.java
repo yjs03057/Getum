@@ -1,47 +1,41 @@
 package com.example.getum;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.database.Cursor;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Canvas;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import android.content.res.AssetManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.example.getum.SQLite.SQLiteDBHelper;
 import com.example.getum.SQLite.StorageContract;
-import com.example.getum.SQLite.UmbrellaContract;
-import com.example.getum.SQLite.UserContract;
-import com.google.android.gms.common.internal.Objects;
-import com.google.zxing.integration.android.IntentIntegrator;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -53,26 +47,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Looper;
-import android.provider.Settings;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -80,13 +54,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static android.widget.Toast.*;
+import static android.widget.Toast.LENGTH_LONG;
+import static android.widget.Toast.makeText;
 
 
 public class MainActivity extends AppCompatActivity
@@ -126,7 +101,8 @@ public class MainActivity extends AppCompatActivity
 
     private static int login_flag = 0;  //로그인, 로그아웃 구분
 
-    private int info_id;
+    private int info_userno;
+    private String info_id;
     private String info_name;
     private String info_cardno;
     private String info_phoneno;
@@ -226,6 +202,7 @@ public class MainActivity extends AppCompatActivity
                 if (id == R.id.account) {
                     if(login_flag == 1){
                         Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                        intent.putExtra("userno",info_userno);
                         intent.putExtra("id",info_id);
                         intent.putExtra("name", info_name);
                         intent.putExtra("cardno",info_cardno);
@@ -258,7 +235,8 @@ public class MainActivity extends AppCompatActivity
         //AFter Login
         if(login_flag == 1){
             Intent user_intent = getIntent();
-            info_id = user_intent.getExtras().getInt("id");
+            info_userno = user_intent.getExtras().getInt("userno");
+            info_id = user_intent.getExtras().getString("id");
             info_name = user_intent.getExtras().getString("name");
             info_cardno = user_intent.getExtras().getString("cardno");
             info_phoneno = user_intent.getExtras().getString("phoneno");
