@@ -31,9 +31,7 @@
             <TextView
                 android:id="@+id/toolbar_title"
                 android:text="GET UM"
-                android:textColor="#ffffff"
-                android:textSize="30dp"
-                android:textStyle="bold"
+                style="@style/toolbartitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />

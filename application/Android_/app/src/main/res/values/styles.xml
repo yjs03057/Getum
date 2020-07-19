@@ -12,4 +12,10 @@
         <item name="fontFamily">@font/bazzi</item>
     </style>
 
+    <style name="toolbartitle">
+        <item name="android:textSize">50dp</item>
+        <item name="fontFamily">@font/bazzi</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 </resources>
