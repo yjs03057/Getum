@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         idEditText = (EditText) findViewById(R.id.user_id);
         pwEditText = (EditText) findViewById(R.id.user_password);
 
@@ -70,7 +71,20 @@ public class LoginActivity extends AppCompatActivity {
                     Toast toast  = Toast.makeText(LoginActivity.this, "로그인성공", Toast.LENGTH_SHORT);
                     toast.show();
 
+                    ((MainActivity)MainActivity.context).setLogin_flag(1);
+
+                    cursor.moveToNext();
+
+                    int info_id = cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_ID);
+                    String info_name = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_NAME));
+                    String info_cardno = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_CARD_NO));
+                    String info_phoneno = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_PHONE_NO));
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("id", info_id);
+                    intent.putExtra("name", info_name);
+                    intent.putExtra("cardno", info_cardno);
+                    intent.putExtra("phoneno", info_phoneno);
                     startActivity(intent);//액티비티 이동
                     finish();
                 }
