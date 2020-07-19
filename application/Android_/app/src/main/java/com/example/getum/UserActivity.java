@@ -40,6 +40,10 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+        if(((MainActivity)MainActivity.context).getLogin_flag() == 1){
+            //로그인 완료
+        }
+
     }
 
     public void InitializeRecordData(){
