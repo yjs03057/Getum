@@ -7,7 +7,7 @@
     android:gravity="center"
     android:background="@drawable/mustard_bg">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
