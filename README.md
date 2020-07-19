@@ -2,6 +2,18 @@
 Repository for Getum (AngelHack)
 
 ---
+## 0. Background
+### (1) 테스트 방법 (Emulator)
+* apk위치 : git 프로젝트의 apk 디렉토리
+* 안드로이드 스튜디오에서 emulator 실행 후 드래그&드롭으로 apk 설치 가능
+* 메뉴 이동 후 Getum 앱 실행
+### (2) 테스트 방법 (Physical Device)
+* 실제 기기 연결 후 안드로이드 스튜디오에서 빌드
+### (3) 개발 및 테스트 환경
+* 개발 환경 : Android Studio, Api 26, Oreo (Nauget 이상에서 실행해야 함)
+* 테스트 환경 : Emulator : Pixel 3a API 26, Real Device : LG V30
+
+---
 
 ## 1. 어플리케이션 사용법
   ### 1) 우산 보관함 위치 확인
