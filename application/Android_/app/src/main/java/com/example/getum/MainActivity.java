@@ -132,22 +132,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(login_flag == 0){
-            setContentView(R.layout.activity_main);
-            navigationView = findViewById(R.id.nav_view);
-            navigationView_account = findViewById(R.id.nav_view_account);
+        setContentView(R.layout.activity_main);
 
-            navigationView.setVisibility(View.VISIBLE);
-            navigationView_account.setVisibility((View.GONE));
-        }
-        else{
-            setContentView(R.layout.activity_main);
-            navigationView = findViewById(R.id.nav_view_account);
-            navigationView_account = findViewById(R.id.nav_view);
-
-            navigationView.setVisibility(View.VISIBLE);
-            navigationView_account.setVisibility((View.GONE));
-        }
+        navigationView = findViewById(R.id.nav_view);
+        navigationView_account = findViewById(R.id.nav_view_account);
 
         context = this;
 
@@ -266,6 +254,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: { // 왼쪽 상단 버튼 눌렀을 때
+                if(login_flag == 0){
+                    navigationView.setVisibility(View.VISIBLE);
+                    navigationView_account.setVisibility((View.GONE));
+                }
+                else {
+                    navigationView.setVisibility(View.GONE);
+                    navigationView_account.setVisibility((View.VISIBLE));
+                }
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             }

@@ -143,13 +143,10 @@
 
         </RelativeLayout>
 
+
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-        >
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="wrap_content"
@@ -157,6 +154,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/navi_header"
+            android:visibility="gone"
             app:menu="@menu/navi_menu" />
 
         <com.google.android.material.navigation.NavigationView
@@ -166,8 +164,8 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/navi_header"
-            app:menu="@menu/navi_menu_account" />
-
-    </RelativeLayout>
+            android:visibility="gone"
+            app:menu="@menu/navi_menu_account"
+            />
 
 </androidx.drawerlayout.widget.DrawerLayout>
