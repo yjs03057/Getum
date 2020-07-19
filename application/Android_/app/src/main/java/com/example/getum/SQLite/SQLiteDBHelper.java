@@ -185,4 +185,12 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    public Cursor getRentalLog(String user_id){
+        SQLiteDatabase db = getReadableDatabase();
+        String query1 = "SELECT * FROM rental_log WHERE user_no =" + user_id;
+        Cursor cursor = db.rawQuery(query1, null);
+
+        return cursor;
+    }
 }

@@ -126,6 +126,11 @@ public class MainActivity extends AppCompatActivity
 
     private static int login_flag = 0;  //로그인, 로그아웃 구분
 
+    private int info_id;
+    private String info_name;
+    private String info_cardno;
+    private String info_phoneno;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,6 +206,14 @@ public class MainActivity extends AppCompatActivity
         um_cnt = (TextView)findViewById(R.id.um_cnt);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if(login_flag == 1){
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.navi_menu_account);
+        }
+        else{
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.navi_menu);
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -211,11 +224,25 @@ public class MainActivity extends AppCompatActivity
                 String title = menuItem.getTitle().toString();
 
                 if (id == R.id.account) {
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
+                    if(login_flag == 1){
+                        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                        intent.putExtra("id",info_id);
+                        intent.putExtra("name", info_name);
+                        intent.putExtra("cardno",info_cardno);
+                        intent.putExtra("phoneno",info_phoneno);
+                        startActivity(intent);
+                    }
+                    else{
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                    }
                 } else if (id == R.id.info) {
                     Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
                     startActivity(intent);
+                } else if(id == R.id.customercenter){
+                    Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
+                    startActivity(intent);
+
                 } else if (id == R.id.logout) {
                     Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
                     startActivity(intent);
@@ -225,30 +252,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        navigationView.getHeaderView(0).findViewById(R.id.btn_user).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //사용자 정보
-
-                if(login_flag == 0){
-                    Toast toast = makeText(getApplicationContext(), "로그인을 진행해주세요.", LENGTH_LONG);
-                    toast.show();
-                }
-                else{
-                    Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-                    //intent.putextra
-                    startActivity(intent);
-                }
-            }
-        });
-
-
         storage_info = findViewById(R.id.storage_info_banner);
 
         //AFter Login
         if(login_flag == 1){
             Intent user_intent = getIntent();
-            Log.d("user",user_intent.getExtras().getString("name"));
+            info_id = user_intent.getExtras().getInt("id");
+            info_name = user_intent.getExtras().getString("name");
+            info_cardno = user_intent.getExtras().getString("cardno");
+            info_phoneno = user_intent.getExtras().getString("phoneno");
+            Log.d("user",info_name +" " + info_cardno);
         }
     }
 
@@ -452,9 +465,7 @@ public class MainActivity extends AppCompatActivity
         markerOptions.title(markerTitle);
         markerOptions.snippet(markerSnippet);
         markerOptions.draggable(true);
-
         currentMarker = mMap.addMarker(markerOptions);
-
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
         mMap.moveCamera(cameraUpdate);
          */

@@ -34,6 +34,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
         android:text="사용자 정보"
+        android:textColor="#ffffff"
         android:fontFamily="@font/bazzi"
         android:background="@drawable/mustard_bar_with_blueline"
         android:textSize="40dp"
@@ -84,6 +85,25 @@
             android:layout_row="1"
             android:gravity="center"/>
 
+        <TextView
+            style="@style/userinfo"
+            android:text=" CELL: "
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:gravity="center"/>
+
+        <TextView
+            style="@style/userinfo"
+            android:id="@+id/tv_user_phoneno"
+            android:text="phone no"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:gravity="center"/>
+
     </GridLayout>
 
     <TextView
@@ -93,6 +113,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
         android:text="카드정보"
+        android:textColor="#ffffff"
         android:fontFamily="@font/bazzi"
         android:background="@drawable/mustard_bar_with_blueline"
         android:textSize="40dp"
@@ -126,37 +147,19 @@
             android:layout_row="0"
             android:gravity="center"/>
 
-        <TextView
-            style="@style/userinfo"
-            android:text="유효기간: "
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:gravity="center"/>
-
-        <TextView
-            style="@style/userinfo"
-            android:id="@+id/tv_cardnum_expiration"
-            android:text="YY/MM"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:gravity="center"/>
-
     </GridLayout>
 
     <TextView
-        android:layout_width="200dp"
+        android:layout_width="220dp"
         android:layout_height="60dp"
         android:gravity="center"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
-        android:text="대여/반납"
+        android:text="대여/반납 내역"
+        android:textColor="#ffffff"
         android:fontFamily="@font/bazzi"
         android:background="@drawable/mustard_bar_with_blueline"
-        android:textSize="40dp"
+        android:textSize="35dp"
         />
 
     <ListView
