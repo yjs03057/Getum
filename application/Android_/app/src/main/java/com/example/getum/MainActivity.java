@@ -220,8 +220,9 @@ public class MainActivity extends AppCompatActivity
                     startActivity(intent);
 
                 } else if (id == R.id.logout) {
-                    Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
-                    startActivity(intent);
+                    login_flag = 0;
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    finish();
                 }
 
                 return true;
