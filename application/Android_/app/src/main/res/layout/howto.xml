@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoActivity">
+
+    <ImageButton
+        android:id="@+id/close_btn"
+        android:layout_width="30dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close" />
+
+    <TextView
+        android:id="@+id/infotitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="요금 및 이용시간"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/infotitle1"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="140dp" />
+
+    <TextView
+        android:id="@+id/service_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="100dp"
+        android:text="대여 요금 안내"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="410dp"
+
+        android:layout_marginTop="17dp"
+        android:text="기본적인 우산 대여 요금은 1000원입니다. \n\nQR코드를 이용해 우산 대여가 시작되었다면 연동되어있는 카드를 \n통해 결제가 먼저 시작됩니다. 초기 결제 비용은 보증금 2000원이 \n포함된 금액인 3000원이 결제됩니다.\n \n이후 대여기간인 7일 이내에 반납을 진행하면 보증금은 등록하신\n 카드로 환급이 진행됩니다.
+                        \n\n※ "
+
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/service_info"
+        tools:layout_editor_absoluteX="16dp" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

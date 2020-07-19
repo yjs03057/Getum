@@ -112,9 +112,6 @@ public class MainActivity extends AppCompatActivity
     Location mCurrentLocation;
     LatLng currentPosition;
 
-    NavigationView navigationView;
-    NavigationView navigationView_account;
-
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
     private Location location;
@@ -133,9 +130,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        navigationView = findViewById(R.id.nav_view);
-        navigationView_account = findViewById(R.id.nav_view_account);
 
         context = this;
 
@@ -191,7 +185,6 @@ public class MainActivity extends AppCompatActivity
         storage_address = (TextView)findViewById(R.id.storage_address);
         um_cnt = (TextView)findViewById(R.id.um_cnt);
 
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if(login_flag == 1){
             navigationView.getMenu().clear();
@@ -222,12 +215,11 @@ public class MainActivity extends AppCompatActivity
                 } else if (id == R.id.info) {
                     Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
                     startActivity(intent);
-                } else if (id == R.id.customercenter) {
-
                 } else if(id == R.id.customercenter){
+                    Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
+                    startActivity(intent);
 
                 } else if (id == R.id.logout) {
-
                     Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
                     startActivity(intent);
                 }
@@ -257,14 +249,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: { // 왼쪽 상단 버튼 눌렀을 때
-                if(login_flag == 0){
-                    navigationView.setVisibility(View.VISIBLE);
-                    navigationView_account.setVisibility((View.GONE));
-                }
-                else {
-                    navigationView.setVisibility(View.GONE);
-                    navigationView_account.setVisibility((View.VISIBLE));
-                }
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             }
@@ -455,9 +439,7 @@ public class MainActivity extends AppCompatActivity
         markerOptions.title(markerTitle);
         markerOptions.snippet(markerSnippet);
         markerOptions.draggable(true);
-
         currentMarker = mMap.addMarker(markerOptions);
-
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
         mMap.moveCamera(cameraUpdate);
          */
