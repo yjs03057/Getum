@@ -156,7 +156,22 @@ public class MainActivity extends AppCompatActivity
         scanQRBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ScanQR.class);
-                startActivity(intent);
+                if(login_flag == 1){
+                    Intent beforeIntent = getIntent();
+                    String id = beforeIntent.getStringExtra("id");
+                    String name = beforeIntent.getStringExtra("name");
+                    String cardno = beforeIntent.getStringExtra("cardno");
+                    String phoneno = beforeIntent.getStringExtra("phoneno");
+                    intent.putExtra("id", id);
+                    intent.putExtra("name", name);
+                    intent.putExtra("cardno", cardno);
+                    intent.putExtra("phoneno", phoneno);
+                    startActivity(intent);
+                }
+                else{
+                    Toast toast = makeText(getApplicationContext(), "로그인을 진행해주세요.", LENGTH_LONG);
+                    toast.show();
+                }
             }
         });
 

@@ -17,13 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ProceedPay"></activity>
         <activity android:name=".SignInActivity" />
         <activity android:name=".CustomcenterActivity" />
         <activity android:name=".ScanQR" />
         <activity android:name=".CreateQR" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".UserActivity"/>
+        <activity android:name=".UserActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
