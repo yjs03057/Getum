@@ -75,12 +75,14 @@ public class LoginActivity extends AppCompatActivity {
 
                     cursor.moveToNext();
 
-                    int info_id = cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_ID);
+                    int info_userno = cursor.getInt(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_USER_NO));
+                    String info_id = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_ID));
                     String info_name = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_NAME));
                     String info_cardno = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_CARD_NO));
                     String info_phoneno = cursor.getString(cursor.getColumnIndexOrThrow(UserContract.User.COLUMN_PHONE_NO));
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("userno", info_userno);
                     intent.putExtra("id", info_id);
                     intent.putExtra("name", info_name);
                     intent.putExtra("cardno", info_cardno);

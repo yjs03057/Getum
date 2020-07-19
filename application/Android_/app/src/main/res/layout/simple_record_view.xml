@@ -15,27 +15,32 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:id="@+id/rent_flag"/>
+            android:id="@+id/rent_return"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="5">
 
             <TextView
+                style="@style/listviewitem"
                 android:id="@+id/tv_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="장소"
-                android:textColor="#ffffff"/>
+                />
 
             <TextView
                 android:id="@+id/tv_timestamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="일시"
-                android:textColor="#ffffff"/>
+                android:fontFamily="@font/bazzi"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                />
 
 
         </LinearLayout>
