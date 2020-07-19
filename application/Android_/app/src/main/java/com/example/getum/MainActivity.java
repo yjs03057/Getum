@@ -126,6 +126,11 @@ public class MainActivity extends AppCompatActivity
 
     private static int login_flag = 0;  //로그인, 로그아웃 구분
 
+    private int info_id;
+    private String info_name;
+    private String info_cardno;
+    private String info_phoneno;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,6 +211,10 @@ public class MainActivity extends AppCompatActivity
                 if (id == R.id.account) {
                     if(login_flag == 1){
                         Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                        intent.putExtra("id",info_id);
+                        intent.putExtra("name", info_name);
+                        intent.putExtra("cardno",info_cardno);
+                        intent.putExtra("phoneno",info_phoneno);
                         startActivity(intent);
                     }
                     else{
@@ -226,14 +235,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
         storage_info = findViewById(R.id.storage_info_banner);
 
         //AFter Login
         if(login_flag == 1){
             Intent user_intent = getIntent();
-            Log.d("user",user_intent.getExtras().getString("name"));
+            info_id = user_intent.getExtras().getInt("id");
+            info_name = user_intent.getExtras().getString("name");
+            info_cardno = user_intent.getExtras().getString("cardno");
+            info_phoneno = user_intent.getExtras().getString("phoneno");
+            Log.d("user",info_name +" " + info_cardno);
         }
     }
 
