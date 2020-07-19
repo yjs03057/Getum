@@ -2,13 +2,16 @@ package com.example.getum.SQLite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -167,6 +170,15 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
+    public Cursor findUserNoByUserId(String user_id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM user " + "WHERE id='"+ user_id+"'";
+        Cursor cursor = db.rawQuery(query, null);
+
+        return cursor;
+    }
+
     public int UmbrellaInStorage(String storage_id) { //현재 Storage에 있는 Umbrella 개수
         SQLiteDatabase db = getReadableDatabase();
         String query1 = "SELECT * FROM umbrella WHERE storage_id =" + storage_id;
@@ -192,6 +204,33 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
 
         Log.d("query",query1);
         return cursor;
+    }
+
+    public Cursor getUmbrellaFromStorage(Integer storage_id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM umbrella "+"WHERE storage_id="+storage_id+" ORDER BY updated_at";
+        Cursor cursor = db.rawQuery(query, null);
+
+        return cursor;
+    }
+
+    public Cursor getUmbrellaFromRentalLog(Integer user_no){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM rental_log "+"WHERE user_no="+user_no+" ORDER BY timestamp DESC";
+        Cursor cursor = db.rawQuery(query, null);
+
+        return cursor;
+    }
+
+    public void updateUmbrellaWithStorage(String umbrella_id, Integer storage_id, String updated_at){
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UmbrellaContract.Umbrella.COLUMN_ID, umbrella_id);
+        values.put(UmbrellaContract.Umbrella.COLUMN_STORAGE_ID, storage_id);
+        values.put(UmbrellaContract.Umbrella.COLUMN_UPDATED_AT, updated_at);
+        db.update(UmbrellaContract.Umbrella.TABLE_NAME, values, "id='" + umbrella_id + "'", null);
     }
 
     public String getStoragename(int storage_id){

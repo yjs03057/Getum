@@ -101,11 +101,11 @@ public class MainActivity extends AppCompatActivity
 
     private static int login_flag = 0;  //로그인, 로그아웃 구분
 
-    private int info_userno;
-    private String info_id;
-    private String info_name;
-    private String info_cardno;
-    private String info_phoneno;
+    public int info_userno;
+    public String info_id;
+    public String info_name;
+    public String info_cardno;
+    public String info_phoneno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,28 +124,18 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String currentTimeStamp = dateFormat.format(new Date());
-        dbHelper.insertRentalLogRecord("rental", 1, "00001", 1, currentTimeStamp);
-
-
         scanQRBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ScanQR.class);
                 if(login_flag == 1){
-                    Intent beforeIntent = getIntent();
-                    String id = beforeIntent.getStringExtra("id");
-                    String name = beforeIntent.getStringExtra("name");
-                    String cardno = beforeIntent.getStringExtra("cardno");
-                    String phoneno = beforeIntent.getStringExtra("phoneno");
-                    intent.putExtra("id", id);
-                    intent.putExtra("name", name);
-                    intent.putExtra("cardno", cardno);
-                    intent.putExtra("phoneno", phoneno);
+                    intent.putExtra("id",info_id);
+                    intent.putExtra("name", info_name);
+                    intent.putExtra("cardno",info_cardno);
+                    intent.putExtra("phoneno",info_phoneno);
                     startActivity(intent);
                 }
                 else{
-                    Toast toast = makeText(getApplicationContext(), "로그인을 진행해주세요.", LENGTH_LONG);
+                    Toast toast = makeText(getApplicationContext(), "로그인을 진행해주세요", LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -232,15 +222,14 @@ public class MainActivity extends AppCompatActivity
 
         storage_info = findViewById(R.id.storage_info_banner);
 
-        //AFter Login
         if(login_flag == 1){
             Intent user_intent = getIntent();
+
             info_userno = user_intent.getExtras().getInt("userno");
             info_id = user_intent.getExtras().getString("id");
             info_name = user_intent.getExtras().getString("name");
             info_cardno = user_intent.getExtras().getString("cardno");
             info_phoneno = user_intent.getExtras().getString("phoneno");
-            Log.d("user",info_name +" " + info_cardno);
         }
     }
 
