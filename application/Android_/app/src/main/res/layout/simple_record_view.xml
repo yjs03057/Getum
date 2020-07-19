@@ -12,8 +12,8 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:id="@+id/rent_return"/>
 
@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="장소"
+                android:textSize="20dp"
                 />
 
             <TextView
@@ -39,7 +40,7 @@
                 android:text="일시"
                 android:fontFamily="@font/bazzi"
                 android:textColor="#ffffff"
-                android:textSize="25dp"
+                android:textSize="15dp"
                 />
 
 

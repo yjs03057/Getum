@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ScanQR.class);
                 if(login_flag == 1){
+                    intent.putExtra("userno",info_userno);
                     intent.putExtra("id",info_id);
                     intent.putExtra("name", info_name);
                     intent.putExtra("cardno",info_cardno);
@@ -213,6 +214,7 @@ public class MainActivity extends AppCompatActivity
                 } else if (id == R.id.logout) {
                     login_flag = 0;
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }
 

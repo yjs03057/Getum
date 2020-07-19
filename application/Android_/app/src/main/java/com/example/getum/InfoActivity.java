@@ -23,7 +23,7 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(InfoActivity.this, Howto.class);
-                startActivity(intent);//액티비티 이동
+                startActivity(intent);
             }
         });
 
@@ -32,12 +32,12 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(InfoActivity.this, description.class);
-                startActivity(intent);//액티비티 이동
+                startActivity(intent);
             }
         });
 
 
-        close_button = findViewById(R.id.close_btn);// btn_second 버튼 아이디을 찾아 와라!
+        close_button = findViewById(R.id.back_button);// btn_second 버튼 아이디을 찾아 와라!
         close_button.setOnClickListener(new View.OnClickListener() { //선언
 
 

@@ -43,6 +43,7 @@ public class ScanQR extends AppCompatActivity {
     private RelativeLayout activityMain;
     private Intent beforeIntent;
     private RadioButton payCardNo;
+    public Integer user_no;
     public String user_id;
     public String name;
     public String cardno;
@@ -139,6 +140,7 @@ public class ScanQR extends AppCompatActivity {
     }
 
     protected void getExtras(Intent beforeIntent){
+        user_no = beforeIntent.getExtras().getInt("userno");
         user_id = beforeIntent.getExtras().getString("id");
         name = beforeIntent.getExtras().getString("name");
         cardno = beforeIntent.getExtras().getString("cardno");
@@ -146,6 +148,7 @@ public class ScanQR extends AppCompatActivity {
     }
 
     protected void setExtras(Intent newIntent){
+        newIntent.putExtra("userno",user_no);
         newIntent.putExtra("id", user_id);
         newIntent.putExtra("name", name);
         newIntent.putExtra("cardno", cardno);
