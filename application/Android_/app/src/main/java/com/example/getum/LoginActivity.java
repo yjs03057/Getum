@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         helper = new SQLiteDBHelper(this);
 
-        close_button = findViewById(R.id.close_btn);
+        close_button = findViewById(R.id.back_button);
         sign_in_button = (Button) findViewById(R.id.sign_in);
 
         login_button = findViewById(R.id.login_button);

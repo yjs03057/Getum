@@ -66,6 +66,7 @@ public class SignInActivity extends AppCompatActivity {
                 if(!charSequence.toString().equals(result_card)){
                     result_card = card_df.format(Long.parseLong(charSequence.toString().replace(",","")));
                     cardnumEditText.setText(result_card);
+                    cardnumEditText.setSelection(result_card.length());
                 }
             }
 
