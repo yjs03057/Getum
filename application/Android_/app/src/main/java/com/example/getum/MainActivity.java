@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         context = this;
+        currentPosition = new LatLng(37.56, 126.97);
 
         storage_info_flag = 0;
 
@@ -233,6 +234,8 @@ public class MainActivity extends AppCompatActivity
             info_cardno = user_intent.getExtras().getString("cardno");
             info_phoneno = user_intent.getExtras().getString("phoneno");
         }
+
+
     }
 
     private Drawable resize(Drawable image) {
@@ -306,6 +309,8 @@ public class MainActivity extends AppCompatActivity
 
 
         storage_marker();   //storage Marker
+
+
     }
 
 
@@ -329,7 +334,10 @@ public class MainActivity extends AppCompatActivity
                 //현재 위치에 마커 생성하고 이동
                 setCurrentLocation(location, markerTitle, markerSnippet);
                 mCurrentLocation = location;
+
+
             }
+
 
         }
     };
@@ -428,8 +436,7 @@ public class MainActivity extends AppCompatActivity
             currentMarker.remove();
         }
         LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
-        mMap.moveCamera(cameraUpdate);
+
         /*
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(currentLatLng);
@@ -437,7 +444,8 @@ public class MainActivity extends AppCompatActivity
         markerOptions.snippet(markerSnippet);
         markerOptions.draggable(true);
         currentMarker = mMap.addMarker(markerOptions);
-
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
+        mMap.moveCamera(cameraUpdate);
          */
     }
 
