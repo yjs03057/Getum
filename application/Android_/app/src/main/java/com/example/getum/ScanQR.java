@@ -43,7 +43,7 @@ public class ScanQR extends AppCompatActivity {
     private RelativeLayout activityMain;
     private Intent beforeIntent;
     private RadioButton payCardNo;
-    public String id;
+    public String user_id;
     public String name;
     public String cardno;
     public String phoneno;
@@ -126,7 +126,7 @@ public class ScanQR extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ScanQR.this, ProceedPay.class);
                 setExtras(intent);
-                intent.putExtra("storage_id", storage_id);
+                intent.putExtra("storage_id", Integer.parseInt(storage_id));
                 startActivity(intent);
                 finish();
             }
@@ -139,14 +139,14 @@ public class ScanQR extends AppCompatActivity {
     }
 
     protected void getExtras(Intent beforeIntent){
-        id = beforeIntent.getExtras().getString("id");
+        user_id = beforeIntent.getExtras().getString("id");
         name = beforeIntent.getExtras().getString("name");
         cardno = beforeIntent.getExtras().getString("cardno");
         phoneno = beforeIntent.getExtras().getString("phoneno");
     }
 
     protected void setExtras(Intent newIntent){
-        newIntent.putExtra("id", id);
+        newIntent.putExtra("id", user_id);
         newIntent.putExtra("name", name);
         newIntent.putExtra("cardno", cardno);
         newIntent.putExtra("phoneno", phoneno);
@@ -182,6 +182,13 @@ public class ScanQR extends AppCompatActivity {
                         String currentTimeStamp = dateFormat.format(cal.getTime());
                         payInfo.setText("반납기한 : " + currentTimeStamp);
                         locationText.setText("대여 우산함 위치 : " + location);
+                    }
+                    else if(type.equals("return")){
+                        Intent intent = new Intent(ScanQR.this, ReturnActivity.class);
+                        setExtras(intent);
+                        intent.putExtra("storage_id", Integer.parseInt(storage_id));
+                        startActivity(intent);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

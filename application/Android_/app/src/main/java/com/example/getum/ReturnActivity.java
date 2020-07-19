@@ -3,7 +3,6 @@ package com.example.getum;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,7 +14,7 @@ import com.example.getum.SQLite.SQLiteDBHelper;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ProceedPay extends AppCompatActivity {
+public class ReturnActivity extends AppCompatActivity {
     private ImageButton backButton;
     private Button backToMenuButton;
     private Intent beforeIntent;
@@ -28,7 +27,7 @@ public class ProceedPay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_proceed_pay);
+        setContentView(R.layout.activity_return_activity);
 
         dbHelper = new SQLiteDBHelper(this);
 
@@ -39,7 +38,7 @@ public class ProceedPay extends AppCompatActivity {
 
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ProceedPay.this, MainActivity.class);
+                Intent intent = new Intent(ReturnActivity.this, MainActivity.class);
                 setExtras(intent);
                 startActivity(intent);
                 finish();
@@ -48,7 +47,7 @@ public class ProceedPay extends AppCompatActivity {
 
         backToMenuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(ProceedPay.this, MainActivity.class);
+                Intent intent = new Intent(ReturnActivity.this, MainActivity.class);
                 setExtras(intent);
                 startActivity(intent);
                 finish();
@@ -62,15 +61,15 @@ public class ProceedPay extends AppCompatActivity {
         user_cursor.moveToNext();
         Integer user_no = user_cursor.getInt(user_cursor.getColumnIndexOrThrow("user_no"));
 
-        Cursor umbrella_cursor = dbHelper.getUmbrellaFromStorage(storage_id);
+        Cursor umbrella_cursor = dbHelper.getUmbrellaFromRentalLog(user_no);
         umbrella_cursor.moveToNext();
-        String umbrella_id = umbrella_cursor.getString(umbrella_cursor.getColumnIndexOrThrow("id"));
+        String umbrella_id = umbrella_cursor.getString(umbrella_cursor.getColumnIndexOrThrow("umbrella_id"));
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTimeStamp = dateFormat.format(new Date());
 
-        dbHelper.insertRentalLogRecord("rental", user_no, umbrella_id, storage_id, currentTimeStamp);
-        dbHelper.updateUmbrellaWithStorage(umbrella_id, -1, currentTimeStamp);
+        dbHelper.insertRentalLogRecord("return", user_no, umbrella_id, storage_id, currentTimeStamp);
+        dbHelper.updateUmbrellaWithStorage(umbrella_id, storage_id, currentTimeStamp);
 
     }
 
