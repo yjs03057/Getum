@@ -112,6 +112,9 @@ public class MainActivity extends AppCompatActivity
     Location mCurrentLocation;
     LatLng currentPosition;
 
+    NavigationView navigationView;
+    NavigationView navigationView_account;
+
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
     private Location location;
@@ -129,7 +132,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        if(login_flag == 0){
+            setContentView(R.layout.activity_main);
+            navigationView = findViewById(R.id.nav_view);
+            navigationView_account = findViewById(R.id.nav_view_account);
+
+            navigationView.setVisibility(View.VISIBLE);
+            navigationView_account.setVisibility((View.GONE));
+        }
+        else{
+            setContentView(R.layout.activity_main);
+            navigationView = findViewById(R.id.nav_view_account);
+            navigationView_account = findViewById(R.id.nav_view);
+
+            navigationView.setVisibility(View.VISIBLE);
+            navigationView_account.setVisibility((View.GONE));
+        }
 
         context = this;
 
@@ -185,7 +203,8 @@ public class MainActivity extends AppCompatActivity
         storage_address = (TextView)findViewById(R.id.storage_address);
         um_cnt = (TextView)findViewById(R.id.um_cnt);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -201,7 +220,7 @@ public class MainActivity extends AppCompatActivity
                 } else if (id == R.id.info) {
                     Intent intent = new Intent(getApplicationContext(), InfoActivity.class);
                     startActivity(intent);
-                } else if (id == R.id.logout) {
+                } else if (id == R.id.customercenter) {
                     Intent intent = new Intent(getApplicationContext(), CustomcenterActivity.class);
                     startActivity(intent);
                 }
